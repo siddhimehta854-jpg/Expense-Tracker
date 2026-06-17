@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@v2.1.4/dist/tesseract.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Expense Tracker</h1>
+
+    <div class="summary">
+        <div class="card balance">
+            <h3>Balance</h3>
+            <h2 id="balance">₹0</h2>
+        </div>
+
+        <div class="card income">
+            <h3>Income</h3>
+            <h2 id="income">₹0</h2>
+        </div>
+
+        <div class="card expense">
+            <h3>Expense</h3>
+            <h2 id="expense">₹0</h2>
+        </div>
+    </div>
+
+    <div class="form">
+        <input type="text" id="description" placeholder="Description">
+        <input type="number" id="amount" placeholder="Amount">
+        <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+        <select id="category">
+            <option value="Other">Other</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Bills">Bills</option>
+            <option value="Health">Health</option>
+            <option value="Education">Education</option>
+        </select>
+        <button onclick="addTransaction()">Add Transaction</button>
+    </div>
+
+    <section class="dashboard-grid">
+        <div class="panel prediction-panel">
+            <h3>Predict End-of-Month Spending</h3>
+            <div class="prediction-row">
+                <span>Projected Spending</span>
+                <strong id="projectSpending">₹0</strong>
+            </div>
+            <div class="prediction-row">
+                <span>Current Spending</span>
+                <strong id="currentSpending">₹0</strong>
+            </div>
+            <div class="prediction-row">
+                <span>Days Remaining</span>
+                <strong id="daysRemaining">0</strong>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>Smart Expense Categorization</h3>
+            <div id="smartCategorization"></div>
+        </div>
+    </section>
+
+    <section class="dashboard-grid">
+        <div class="panel">
+            <h3>Budget Alerts</h3>
+            <div id="budgetAlerts"></div>
+        </div>
+
+        <div class="panel subscription-panel">
+            <h3>Subscription Tracker</h3>
+            <div class="subscription-summary">
+                <div>
+                    <p>Total monthly</p>
+                    <strong id="subscriptionTotal">₹0</strong>
+                </div>
+                <div>
+                    <p>Annual</p>
+                    <strong id="subscriptionAnnual">₹0</strong>
+                </div>
+            </div>
+            <div id="subscriptionList"></div>
+        </div>
+    </section>
+
+    <section class="dashboard-grid">
+        <div class="panel goals-panel">
+            <h3>Savings Goals Dashboard</h3>
+            <form id="goalForm">
+                <input type="text" id="goalName" placeholder="Goal name">
+                <input type="number" id="goalTarget" placeholder="Target amount">
+                <input type="number" id="goalSaved" placeholder="Saved amount">
+                <button type="submit">Add Goal</button>
+            </form>
+            <div id="goalList"></div>
+        </div>
+
+        <div class="panel voice-panel">
+            <h3>Voice Expense Entry</h3>
+            <button id="voiceBtn">Start Voice Input</button>
+            <p id="voiceStatus">Say: "Spent ₹250 on groceries"</p>
+        </div>
+    </section>
+
+    <section class="panel analytics-panel">
+        <h3>Expense Analytics Dashboard</h3>
+        <div class="analytics-grid">
+            <canvas id="categoryChart"></canvas>
+            <canvas id="weeklyChart"></canvas>
+            <canvas id="trendChart"></canvas>
+            <canvas id="savingsChart"></canvas>
+        </div>
+        <div class="analytics-footer">
+            <div>
+                <p>Largest Expenses</p>
+                <div id="largestExpenses"></div>
+            </div>
+            <div>
+                <p>Weekly Comparison</p>
+                <strong id="weeklyComparison">₹0</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel receipt-panel">
+        <h3>AI Receipt Scanner</h3>
+        <input type="file" id="receiptInput" accept="image/*">
+        <img id="receiptPreview" hidden>
+        <div id="receiptResult"></div>
+    </section>
+
+    <div class="transactions">
+        <h2>Transaction History</h2>
+        <div id="transactionList"></div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
